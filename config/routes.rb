@@ -69,6 +69,7 @@ Rails.application.routes.draw do
 
   # DELETE
   get "/delete_tag/:id", :controller => "tags", :action => "destroy"
+  get "/delete_tag/:tag_id/:relationship_id", :controller => "trackers", :action => "untag"
 
   # TAG RELATIONSHIP
    get "/manage_tags/:relationship_id", :controller => "trackers", :action => "manage"

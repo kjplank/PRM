@@ -4,26 +4,38 @@
   <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= @relationship.first_name %> <%= @relationship.last_name %></h3>
+        <h3 class="panel-title"><strong><%= @relationship.first_name %> <%= @relationship.last_name %></strong></h3>
       </div>
       <div class="panel-body">
         <div class="row">
           <div class="col-md-12">
             <dl class="dl-horizontal">
 
-              <dt>Periodicity of communication</dt>
-              <dd><%= @relationship.periodicity_of_communication %></dd>
+              <dt>Check-in Freq</dt>
+              <dd>Every <%= @relationship.periodicity_of_communication %> months</dd>
 
-              <dt>Date of checkin</dt>
-              <dd><%= @relationship.date_of_checkin %></dd>
+              <dt>Last Check-in</dt>
+              <dd>
+                <%=
+                if @relationship.date_of_checkin
+                  @relationship.date_of_checkin
+                else
+                  "None recorded"
+                end
+                %>
+              </dd>
 
-              <dt>Christmas card</dt>
-              <dd><%= @relationship.christmas_card %></dd>
+              <dt>Next Check-in</dt>
+              <dd><%=
+                if @relationship.periodicity_of_communication.present? && @relationship.date_of_checkin.present?
+                  @relationship.date_of_checkin + @relationship.periodicity_of_communication.months
+                else
+                  "No check-in scheduled"
+                end
+                %>
+              </dd>
 
-              <dt>Holiday card</dt>
-              <dd><%= @relationship.holiday_card %></dd>
-
-              <dt>Shared activities history</dt>
+              <dt>Shared history</dt>
               <dd><%= @relationship.shared_activities_history %></dd>
 
               <dt>Education</dt>
@@ -47,25 +59,34 @@
               <dt>Email</dt>
               <dd><%= @relationship.email %></dd>
 
-            </dl>
-            <div class="btn-group btn-group-justified">
-              <a href="/relationships" class="btn btn-primary">
-                <i class="fa fa-chevron-left"></i>
-              </a>
+              <dt>Holiday card</dt>
+              <dd>
+                <%= if @relationship.holiday_card
+                  "Yes"
+                else
+                  "No"
+                  end %>
+                </dd>
 
-              <a href="/relationships/<%= @relationship.id %>/edit" class="btn btn-warning">
-                <i class="fa fa-edit"></i>
-              </a>
+              </dl>
+              <div class="btn-group btn-group-justified">
+                <a href="/relationships" class="btn btn-primary">
+                  <i class="fa fa-chevron-left"></i>
+                </a>
 
-              <a href="/delete_relationship/<%= @relationship.id %>" class="btn btn-danger" rel="nofollow">
-                <i class="fa fa-trash-o"></i>
-              </a>
+                <a href="/relationships/<%= @relationship.id %>/edit" class="btn btn-success">
+                  <i class="fa fa-edit"></i>
+                </a>
+
+                <a href="/delete_relationship/<%= @relationship.id %>" class="btn btn-danger" rel="nofollow">
+                  <i class="fa fa-trash-o"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- End responsive panel example -->
+  <!-- End responsive panel example -->

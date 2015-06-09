@@ -56,9 +56,22 @@ class TrackersController < ApplicationController
 
   def destroy
     @tracker = Tracker.find(params[:id])
-
     @tracker.destroy
-
     redirect_to "/trackers", :notice => "Tracker deleted."
   end
+
+  def untag
+    @tag = Tag.find(params[:tag_id])
+    @relationship = Relationship.find(params[:relationship_id])
+
+    @tracker = Tracker.where(:tag_id => params[:tag_id]).where(:relationship_id => params[:relationship_id])
+    @tracker.destroy_all
+
+    render 'tags/manage'
+
+    # render :template => 'tags/manage_tags/:relationship_id', :locals => {:relationship_id => params[:relationship_id]}
+
+    # render /manage_tags/:relationship_id
+  end
+
 end
