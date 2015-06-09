@@ -1,0 +1,71 @@
+<!-- Responsive panel example-->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @relationship.first_name %> <%= @relationship.last_name %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <dl class="dl-horizontal">
+
+              <dt>Periodicity of communication</dt>
+              <dd><%= @relationship.periodicity_of_communication %></dd>
+
+              <dt>Date of checkin</dt>
+              <dd><%= @relationship.date_of_checkin %></dd>
+
+              <dt>Christmas card</dt>
+              <dd><%= @relationship.christmas_card %></dd>
+
+              <dt>Holiday card</dt>
+              <dd><%= @relationship.holiday_card %></dd>
+
+              <dt>Shared activities history</dt>
+              <dd><%= @relationship.shared_activities_history %></dd>
+
+              <dt>Education</dt>
+              <dd><%= @relationship.education %></dd>
+
+              <dt>Interests</dt>
+              <dd><%= @relationship.interests %></dd>
+
+              <dt>Professional</dt>
+              <dd><%= @relationship.professional %></dd>
+
+              <dt>Family</dt>
+              <dd><%= @relationship.family %></dd>
+
+              <dt>First met</dt>
+              <dd><%= @relationship.first_met %></dd>
+
+              <dt>Birthday</dt>
+              <dd><%= @relationship.birthday %></dd>
+
+              <dt>Email</dt>
+              <dd><%= @relationship.email %></dd>
+
+            </dl>
+            <div class="btn-group btn-group-justified">
+              <a href="/relationships" class="btn btn-primary">
+                <i class="fa fa-chevron-left"></i>
+              </a>
+
+              <a href="/relationships/<%= @relationship.id %>/edit" class="btn btn-warning">
+                <i class="fa fa-edit"></i>
+              </a>
+
+              <a href="/delete_relationship/<%= @relationship.id %>" class="btn btn-danger" rel="nofollow">
+                <i class="fa fa-trash-o"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->

@@ -1,0 +1,195 @@
+<!-- Validation failure messages -->
+
+<% if @relationship.errors.any? %>
+  <% @relationship.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<!-- Responsive panel example -->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @relationship.first_name %> <%= @relationship.last_name %></h3>
+      </div>
+      <div class="panel-body">
+        <form action="/update_relationship/<%= @relationship.id %>" method="post" class="form-horizontal">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+         <!-- Label and dropdown for tags -->
+          <div class="form-group">
+            <label class="col-sm-2 control-label">
+              Tag
+            </label>
+            <div class="col-sm-10">
+             <%= select_tag(:tag_id, options_from_collection_for_select(Tag.all, :id, :tag_name), :class => "form-control") %>
+            </div>
+          </div>
+
+          <!-- Label and input for first_name -->
+          <div class="form-group">
+            <label for="first_name" class="col-sm-2 control-label">
+              First name
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="first_name" name="first_name" placeholder="First name" class="form-control" value="<%= @relationship.first_name %>">
+            </div>
+          </div>
+
+          <!-- Label and input for last_name -->
+          <div class="form-group">
+            <label for="last_name" class="col-sm-2 control-label">
+              Last name
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="last_name" name="last_name" placeholder="Last name" class="form-control" value="<%= @relationship.last_name %>">
+            </div>
+          </div>
+
+          <!-- Label and input for periodicity_of_communication -->
+          <div class="form-group">
+            <label for="periodicity_of_communication" class="col-sm-2 control-label">
+              Periodicity of communication
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="periodicity_of_communication" name="periodicity_of_communication" placeholder="Periodicity of communication" class="form-control" value="<%= @relationship.periodicity_of_communication %>">
+            </div>
+          </div>
+
+          <!-- Label and input for date_of_checkin -->
+          <div class="form-group">
+            <label for="date_of_checkin" class="col-sm-2 control-label">
+              Date of checkin
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="date_of_checkin" name="date_of_checkin" placeholder="Date of checkin" class="form-control" value="<%= @relationship.date_of_checkin %>">
+            </div>
+          </div>
+
+          <!-- Label and input for christmas_card -->
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label for="christmas_card">
+                  <input type="checkbox" id="christmas_card" name="christmas_card" value="1" <%= "checked" if @relationship.christmas_card %>>
+                  Christmas card
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Label and input for holiday_card -->
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label for="holiday_card">
+                  <input type="checkbox" id="holiday_card" name="holiday_card" value="1" <%= "checked" if @relationship.holiday_card %>>
+                  Holiday card
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Label and input for shared_activities_history -->
+          <div class="form-group">
+            <label for="shared_activities_history" class="col-sm-2 control-label">
+              Shared activities history
+            </label>
+            <div class="col-sm-10">
+              <textarea id="shared_activities_history" name="shared_activities_history" placeholder="Shared activities history" class="form-control" rows="3"><%= @relationship.shared_activities_history %></textarea>
+            </div>
+          </div>
+
+          <!-- Label and input for education -->
+          <div class="form-group">
+            <label for="education" class="col-sm-2 control-label">
+              Education
+            </label>
+            <div class="col-sm-10">
+              <textarea id="education" name="education" placeholder="Education" class="form-control" rows="3"><%= @relationship.education %></textarea>
+            </div>
+          </div>
+
+          <!-- Label and input for interests -->
+          <div class="form-group">
+            <label for="interests" class="col-sm-2 control-label">
+              Interests
+            </label>
+            <div class="col-sm-10">
+              <textarea id="interests" name="interests" placeholder="Interests" class="form-control" rows="3"><%= @relationship.interests %></textarea>
+            </div>
+          </div>
+
+          <!-- Label and input for professional -->
+          <div class="form-group">
+            <label for="professional" class="col-sm-2 control-label">
+              Professional
+            </label>
+            <div class="col-sm-10">
+              <textarea id="professional" name="professional" placeholder="Professional" class="form-control" rows="3"><%= @relationship.professional %></textarea>
+            </div>
+          </div>
+
+          <!-- Label and input for family -->
+          <div class="form-group">
+            <label for="family" class="col-sm-2 control-label">
+              Family
+            </label>
+            <div class="col-sm-10">
+              <textarea id="family" name="family" placeholder="Family" class="form-control" rows="3"><%= @relationship.family %></textarea>
+            </div>
+          </div>
+
+          <!-- Label and input for first_met -->
+          <div class="form-group">
+            <label for="first_met" class="col-sm-2 control-label">
+              First met
+            </label>
+            <div class="col-sm-10">
+              <textarea id="first_met" name="first_met" placeholder="First met" class="form-control" rows="3"><%= @relationship.first_met %></textarea>
+            </div>
+          </div>
+
+          <!-- Label and input for birthday -->
+          <div class="form-group">
+            <label for="birthday" class="col-sm-2 control-label">
+              Birthday
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="birthday" name="birthday" placeholder="Birthday" class="form-control" value="<%= @relationship.birthday %>">
+            </div>
+          </div>
+
+          <!-- Label and input for email -->
+          <div class="form-group">
+            <label for="email" class="col-sm-2 control-label">
+              Email
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="email" name="email" placeholder="Email" class="form-control" value="<%= @relationship.email %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-warning">
+                Update Relationship
+              </button>
+              or
+              <a href="/relationships/<%= @relationship.id %>">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- End responsive panel example -->
