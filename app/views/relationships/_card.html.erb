@@ -1,0 +1,72 @@
+<div class="row isotope-container">
+  <% @relationships.each do |relationship| %>
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <form>
+            <a href="/checkin_relationship/<%= relationship.id %>" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
+            <strong><%= relationship.first_name %> <%= relationship.last_name %></strong>
+          </form>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <dl>
+          <dt>Last check-in</dt>
+          <dd>
+            <%=
+            if relationship.date_of_checkin
+              relationship.date_of_checkin.to_formatted_s(:long_ordinal)
+            else
+              "None recorded"
+            end
+            %>
+          </dd>
+        </dl>
+
+        <dl>
+          <dt>Next check-in</dt>
+          <dd>
+            <%=
+            if relationship.periodicity_of_communication.present? && relationship.date_of_checkin.present?
+              (relationship.date_of_checkin + relationship.periodicity_of_communication.months).to_formatted_s(:long_ordinal)
+
+            else
+              "No check-in scheduled"
+            end
+            %>
+          </dd>
+        </dl>
+
+        <div class="btn-group btn-group-justified">
+          <a href="/relationships/<%= relationship.id %>" class="btn btn-primary">
+            <i class="fa fa-search-plus"></i>
+          </a>
+
+          <a href="/manage_tags/<%= relationship.id %>" class="btn btn-success">
+            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
+          </a>
+
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/relationships/<%= relationship.id %>/edit">Edit</a></li>
+              <li><a href="/delete_relationship/<%= relationship.id %>">Delete</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <ul class="list-group">
+        <% relationship.tags.each do |tag| %>
+        <li class="list-group-item">
+          <%= tag.tag_name %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <% end %>
+</div>

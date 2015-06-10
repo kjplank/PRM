@@ -68,10 +68,6 @@ class TrackersController < ApplicationController
     @tracker.destroy_all
 
     render 'tags/manage'
-
-    # render :template => 'tags/manage_tags/:relationship_id', :locals => {:relationship_id => params[:relationship_id]}
-
-    # render /manage_tags/:relationship_id
   end
 
 end

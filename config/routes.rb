@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   # UPDATE
   get "/relationships/:id/edit", :controller => "relationships", :action => "edit"
+  get "/checkin_relationship/:id", :controller => "relationships", :action => "checkin"
   post "/update_relationship/:id", :controller => "relationships", :action => "update"
 
   # DELETE

@@ -1,4 +1,8 @@
 class RelationshipsController < ApplicationController
+  def checkins
+    @relationships = Relationship.all
+  end
+
   def index
     @relationships = Relationship.all
   end
@@ -69,6 +73,14 @@ class RelationshipsController < ApplicationController
       render 'edit'
     end
   end
+
+  def checkin
+    @relationship = Relationship.find(params[:id])
+    @relationship.date_of_checkin = Date.today
+    @relationship.save
+    redirect_to "/", :notice => "Checked-in!"
+  end
+
 
   def destroy
     @relationship = Relationship.find(params[:id])

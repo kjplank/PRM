@@ -18,7 +18,7 @@
               <dd>
                 <%=
                 if @relationship.date_of_checkin
-                  @relationship.date_of_checkin
+                  @relationship.date_of_checkin.to_formatted_s(:long_ordinal)
                 else
                   "None recorded"
                 end
@@ -28,7 +28,7 @@
               <dt>Next Check-in</dt>
               <dd><%=
                 if @relationship.periodicity_of_communication.present? && @relationship.date_of_checkin.present?
-                  @relationship.date_of_checkin + @relationship.periodicity_of_communication.months
+                  (@relationship.date_of_checkin + @relationship.periodicity_of_communication.months).to_formatted_s(:long_ordinal)
                 else
                   "No check-in scheduled"
                 end
