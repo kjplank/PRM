@@ -3,11 +3,11 @@
 </div>
 
 <%=
-@relationships.each do |relationship|
-  if relationship.date_of_checkin < (Date.today - 1)
+# @relationships.each do |relationship|
+#   if relationship.date_of_checkin < (Date.today - 1)
     render "card"
-  end
-end
+#   end
+# end
 %>
 
 <div class="page-header">
