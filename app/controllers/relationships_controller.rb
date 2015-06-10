@@ -33,12 +33,6 @@ class RelationshipsController < ApplicationController
     @relationship.birthday = params[:birthday]
     @relationship.email = params[:email]
 
-    # @tracker = Tracker.new
-    # @tracker.tag_id = params[:tag_id]
-    # @tracker.relationship_id = params[:id]
-    # @tracker.user_id = current_user.id
-    # @tracker.save
-
     if @relationship.save
       redirect_to "/relationships", :notice => "Relationship created successfully."
     else
@@ -79,7 +73,7 @@ class RelationshipsController < ApplicationController
     @relationship = Relationship.find(params[:id])
     @relationship.date_of_checkin = Date.today
     @relationship.save
-    redirect_to "/", :notice => "Checked-in!"
+    redirect_to "/", :notice => "Checked-in with #{@relationship.first_name} #{@relationship.last_name}!"
   end
 
 
@@ -90,4 +84,12 @@ class RelationshipsController < ApplicationController
 
     redirect_to "/relationships", :notice => "Relationship deleted."
   end
+
+  def upcoming (relationship)
+    next_checkin = relationship.date_of_checkin + relationship.periodicity_of_communication
+    checkin_window = 1
+    if next_checkin - Date.today < checkin_window && next_checkin > Data.today
+    end
+  end
+
 end

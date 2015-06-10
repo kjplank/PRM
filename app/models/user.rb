@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates :user_name, :presence => true, :uniqueness => true
 
   has_many :trackers
-  has_many :relationships, through: :trackers
-  has_many :tags, through: :trackers
+  has_many :relationships
+  has_many :tags
 
 end

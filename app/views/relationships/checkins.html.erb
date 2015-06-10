@@ -4,7 +4,7 @@
 
 <div class="row isotope-container">
   <% @relationships.each do |relationship| %>
-  <% if relationship.user_id == current_user.id && ((relationship.date_of_checkin + relationship.periodicity_of_communication) - Date.today) < 2 && ((relationship.date_of_checkin + relationship.periodicity_of_communication) - Date.today) > 0 %>
+  <% if relationship.user_id == current_user.id %>
   <%= render "card", :relationship => relationship %>
   <% end %>
   <% end %>
@@ -16,7 +16,7 @@
 
 <div class="row isotope-container">
   <% @relationships.each do |relationship| %>
-  <% if relationship.user_id == current_user.id && (relationship.date_of_checkin + relationship.periodicity_of_communication) < Date.today %>
+  <% if relationship.user_id == current_user.id %>
   <%= render "card", :relationship => relationship %>
   <% end %>
   <% end %>
