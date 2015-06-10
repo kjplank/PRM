@@ -12,81 +12,87 @@
             <dl class="dl-horizontal">
 
               <dt>Check-in Freq</dt>
-              <dd>Every <%= @relationship.periodicity_of_communication %> months</dd>
-
-              <dt>Last Check-in</dt>
-              <dd>
-                <%=
-                if @relationship.date_of_checkin
-                  @relationship.date_of_checkin.to_formatted_s(:long_ordinal)
-                else
-                  "None recorded"
-                end
-                %>
-              </dd>
-
-              <dt>Next Check-in</dt>
               <dd><%=
-                if @relationship.periodicity_of_communication.present? && @relationship.date_of_checkin.present?
-                  (@relationship.date_of_checkin + @relationship.periodicity_of_communication.months).to_formatted_s(:long_ordinal)
+                if @relationship.periodicity_of_communication
+                  "Every " + @relationship.periodicity_of_communication.to_s + " months"
                 else
-                  "No check-in scheduled"
-                end
-                %>
-              </dd>
-
-              <dt>Shared history</dt>
-              <dd><%= @relationship.shared_activities_history %></dd>
-
-              <dt>Education</dt>
-              <dd><%= @relationship.education %></dd>
-
-              <dt>Interests</dt>
-              <dd><%= @relationship.interests %></dd>
-
-              <dt>Professional</dt>
-              <dd><%= @relationship.professional %></dd>
-
-              <dt>Family</dt>
-              <dd><%= @relationship.family %></dd>
-
-              <dt>First met</dt>
-              <dd><%= @relationship.first_met %></dd>
-
-              <dt>Birthday</dt>
-              <dd><%= @relationship.birthday %></dd>
-
-              <dt>Email</dt>
-              <dd><%= @relationship.email %></dd>
-
-              <dt>Holiday card</dt>
-              <dd>
-                <%= if @relationship.holiday_card
-                  "Yes"
-                else
-                  "No"
+                  "None"
                   end %>
                 </dd>
 
-              </dl>
-              <div class="btn-group btn-group-justified">
-                <a href="/relationships" class="btn btn-primary">
-                  <i class="fa fa-chevron-left"></i>
-                </a>
+                <dt>Last Check-in</dt>
+                <dd>
+                  <%=
+                  if @relationship.date_of_checkin
+                    @relationship.date_of_checkin.to_formatted_s(:long_ordinal)
+                  else
+                    "None recorded"
+                  end
+                  %>
+                </dd>
 
-                <a href="/relationships/<%= @relationship.id %>/edit" class="btn btn-success">
-                  <i class="fa fa-edit"></i>
-                </a>
+                <dt>Next Check-in</dt>
+                <dd><%=
+                  if @relationship.periodicity_of_communication.present? && @relationship.date_of_checkin.present?
+                    (@relationship.date_of_checkin + @relationship.periodicity_of_communication.months).to_formatted_s(:long_ordinal)
+                  else
+                    "No check-in scheduled"
+                  end
+                  %>
+                </dd>
 
-                <a href="/delete_relationship/<%= @relationship.id %>" class="btn btn-danger" rel="nofollow">
-                  <i class="fa fa-trash-o"></i>
-                </a>
+                <dt>Shared history</dt>
+                <dd><%= @relationship.shared_activities_history %></dd>
+
+                <dt>Education</dt>
+                <dd><%= @relationship.education %></dd>
+
+                <dt>Interests</dt>
+                <dd><%= @relationship.interests %></dd>
+
+                <dt>Professional</dt>
+                <dd><%= @relationship.professional %></dd>
+
+                <dt>Family</dt>
+                <dd><%= @relationship.family %></dd>
+
+                <dt>First met</dt>
+                <dd><%= @relationship.first_met %></dd>
+
+                <dt>Birthday</dt>
+                <dd><%= @relationship.birthday %></dd>
+
+                <dt>Email</dt>
+                <dd><%= @relationship.email %></dd>
+
+                <dt>Holiday card</dt>
+                <dd>
+                  <%= if @relationship.holiday_card
+                    "Yes"
+                  else
+                    "No"
+                    end %>
+                  </dd>
+
+                </dl>
+                <div class="btn-group btn-group-justified">
+                  <a href="/relationships" class="btn btn-primary">
+                    <i class="fa fa-chevron-left"></i>
+                  </a>
+
+                  <a href="/relationships/<%= @relationship.id %>/edit" class="btn btn-success">
+                    <i class="fa fa-edit"></i>
+                  </a>
+
+                  <a href="/delete_relationship/<%= @relationship.id %>" class="btn btn-danger" rel="nofollow">
+                    <i class="fa fa-trash-o"></i>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- End responsive panel example -->
+    <!-- End responsive panel example -->

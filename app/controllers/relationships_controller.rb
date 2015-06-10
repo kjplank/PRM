@@ -85,11 +85,4 @@ class RelationshipsController < ApplicationController
     redirect_to "/relationships", :notice => "Relationship deleted."
   end
 
-  def upcoming (relationship)
-    next_checkin = relationship.date_of_checkin + relationship.periodicity_of_communication
-    checkin_window = 1
-    if next_checkin - Date.today < checkin_window && next_checkin > Data.today
-    end
-  end
-
 end
