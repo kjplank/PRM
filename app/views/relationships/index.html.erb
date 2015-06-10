@@ -16,9 +16,11 @@
 <hr>
 
 <div class="row isotope-container">
-
-  <%= render "card"%>
-
+  <% @relationships.each do |relationship| %>
+  <% if relationship.user_id == current_user.id %>
+  <%= render "card", :relationship => relationship %>
+  <% end %>
+  <% end %>
 </div>
 
 

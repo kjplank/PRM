@@ -2,13 +2,13 @@
   <h1> Upcoming Check-ins </h1>
 </div>
 
-<%=
-# @relationships.each do |relationship|
-#   if relationship.date_of_checkin < (Date.today - 1)
-    render "card"
-#   end
-# end
-%>
+<div class="row isotope-container">
+  <% @relationships.each do |relationship| %>
+  <% if relationship.user_id == current_user.id %>
+  <%= render "card", :relationship => relationship %>
+  <% end %>
+  <% end %>
+</div>
 
 <div class="page-header">
   <h1> Overdue Check-ins </h1>

@@ -64,7 +64,7 @@ class TrackersController < ApplicationController
     @tag = Tag.find(params[:tag_id])
     @relationship = Relationship.find(params[:relationship_id])
 
-    @tracker = Tracker.where(:tag_id => params[:tag_id]).where(:relationship_id => params[:relationship_id])
+    @tracker = Tracker.where(:tag_id => params[:tag_id]).where(:relationship_id => params[:relationship_id]).where(:user_id => current_user.id)
     @tracker.destroy_all
 
     render 'tags/manage'

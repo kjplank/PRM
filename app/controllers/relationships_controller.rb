@@ -17,6 +17,7 @@ class RelationshipsController < ApplicationController
 
   def create
     @relationship = Relationship.new
+    @relationship.user_id = current_user.id
     @relationship.first_name = params[:first_name]
     @relationship.last_name = params[:last_name]
     @relationship.periodicity_of_communication = params[:periodicity_of_communication]

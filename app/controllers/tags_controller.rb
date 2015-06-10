@@ -15,6 +15,7 @@ class TagsController < ApplicationController
   def create
     @tag = Tag.new
     @tag.tag_name = params[:tag_name]
+    @tag.user_id = current_user.id
 
     if @tag.save
       redirect_to "/tags", :notice => "Tag created successfully."
