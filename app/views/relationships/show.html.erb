@@ -11,6 +11,66 @@
           <div class="col-md-12">
             <dl class="dl-horizontal">
 
+              <% if @relationship.image.present? %>
+              <dd><img src="<%= @relationship.image %>" class="img-responsive"></dd>
+              <hr>
+              <% end %>
+
+              <dt>Shared History</dt>
+              <dd><%= @relationship.shared_activities_history %></dd>
+
+              <% if @relationship.education.present? %>
+              <dt>Education</dt>
+              <dd><%= @relationship.education %></dd>
+              <% end %>
+
+              <% if @relationship.interests.present? %>
+              <dt>Interests</dt>
+              <dd><%= @relationship.interests %></dd>
+              <% end %>
+
+              <% if @relationship.professional.present? %>
+              <dt>Professional</dt>
+              <dd><%= @relationship.professional %></dd>
+              <% end %>
+
+              <% if @relationship.family.present? %>
+              <dt>Family</dt>
+              <dd><%= @relationship.family %></dd>
+              <% end %>
+
+              <% if @relationship.birthday.present? %>
+              <dt>Birthday</dt>
+              <dd><%= @relationship.birthday %></dd>
+              <% end %>
+
+
+              <% if @relationship.holiday_card %>
+              <hr>
+              <dt>Holiday Card</dt>
+              <dd> <i class="fa fa-check"></i> </dd>
+              <% end %>
+
+              <hr>
+
+              <dt>Email</dt>
+              <% if @relationship.email.present? %>
+              <dd><%= @relationship.email %></dd>
+              <% end %>
+
+              <dt>Mobile</dt>
+              <% if @relationship.mobile.present? %>
+              <dd><%= @relationship.mobile %></dd>
+              <% end %>
+
+              <% if @relationship.desk.present? %>
+              <dt>Desk</dt>
+              <dd><%= @relationship.desk %></dd>
+              <% end %>
+
+              <br>
+              <hr>
+
               <dt>Check-in Freq</dt>
               <dd><%=
                 if @relationship.periodicity_of_communication
@@ -33,66 +93,33 @@
 
                 <dt>Next Check-in</dt>
                 <dd><%=
-                  if @relationship.periodicity_of_communication.present? && @relationship.date_of_checkin.present?
-                    (@relationship.date_of_checkin + @relationship.periodicity_of_communication.months).to_formatted_s(:long_ordinal)
+                  if @relationship.next_checkin.present?
+                    (@relationship.next_checkin).to_formatted_s(:long_ordinal)
                   else
                     "No check-in scheduled"
                   end
                   %>
                 </dd>
 
-                <dt>Shared history</dt>
-                <dd><%= @relationship.shared_activities_history %></dd>
+              </dl>
+              <div class="btn-group btn-group-justified">
+                <a href="/relationships" class="btn btn-primary">
+                  <i class="fa fa-chevron-left"></i>
+                </a>
 
-                <dt>Education</dt>
-                <dd><%= @relationship.education %></dd>
+                <a href="/relationships/<%= @relationship.id %>/edit" class="btn btn-success">
+                  <i class="fa fa-edit"></i>
+                </a>
 
-                <dt>Interests</dt>
-                <dd><%= @relationship.interests %></dd>
-
-                <dt>Professional</dt>
-                <dd><%= @relationship.professional %></dd>
-
-                <dt>Family</dt>
-                <dd><%= @relationship.family %></dd>
-
-                <dt>First met</dt>
-                <dd><%= @relationship.first_met %></dd>
-
-                <dt>Birthday</dt>
-                <dd><%= @relationship.birthday %></dd>
-
-                <dt>Email</dt>
-                <dd><%= @relationship.email %></dd>
-
-                <dt>Holiday card</dt>
-                <dd>
-                  <%= if @relationship.holiday_card
-                    "Yes"
-                  else
-                    "No"
-                    end %>
-                  </dd>
-
-                </dl>
-                <div class="btn-group btn-group-justified">
-                  <a href="/relationships" class="btn btn-primary">
-                    <i class="fa fa-chevron-left"></i>
-                  </a>
-
-                  <a href="/relationships/<%= @relationship.id %>/edit" class="btn btn-success">
-                    <i class="fa fa-edit"></i>
-                  </a>
-
-                  <a href="/delete_relationship/<%= @relationship.id %>" class="btn btn-danger" rel="nofollow">
-                    <i class="fa fa-trash-o"></i>
-                  </a>
-                </div>
+                <a href="/delete_relationship/<%= @relationship.id %>" class="btn btn-danger" rel="nofollow">
+                  <i class="fa fa-trash-o"></i>
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- End responsive panel example -->
+  <!-- End responsive panel example -->

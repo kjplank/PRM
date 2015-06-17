@@ -8,4 +8,6 @@ belongs_to :user
 has_many :trackers
 has_many :tags, through: :trackers
 
+mount_uploader :image, ImageUploader
+
 end

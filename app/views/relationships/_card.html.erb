@@ -26,8 +26,8 @@
         <dt>Next check-in</dt>
         <dd>
           <%=
-          if relationship.periodicity_of_communication.present? && relationship.date_of_checkin.present?
-            (relationship.date_of_checkin + relationship.periodicity_of_communication.months).to_formatted_s(:long_ordinal)
+          if relationship.next_checkin.present?
+            (relationship.next_checkin).to_formatted_s(:long_ordinal)
 
           else
             "None scheduled"

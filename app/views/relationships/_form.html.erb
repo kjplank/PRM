@@ -5,20 +5,32 @@
 <!-- Label and input for first_name -->
 <div class="form-group">
   <label for="first_name" class="col-sm-2 control-label">
-    First name
+    First Name
   </label>
   <div class="col-sm-10">
-    <input type="text" id="first_name" name="first_name" placeholder="First name" class="form-control" value="<%= @relationship.first_name %>">
+    <input type="text" id="first_name" name="first_name" class="form-control" value="<%= @relationship.first_name %>">
   </div>
 </div>
 
 <!-- Label and input for last_name -->
 <div class="form-group">
   <label for="last_name" class="col-sm-2 control-label">
-    Last name
+    Last Name
   </label>
   <div class="col-sm-10">
-    <input type="text" id="last_name" name="last_name" placeholder="Last name" class="form-control" value="<%= @relationship.last_name %>">
+    <input type="text" id="last_name" name="last_name" class="form-control" value="<%= @relationship.last_name %>">
+  </div>
+</div>
+
+<hr>
+
+<!-- Label and input for date_of_checkin -->
+<div class="form-group">
+  <label for="date_of_checkin" class="col-sm-2 control-label">
+    Last Check-in
+  </label>
+  <div class="col-sm-10">
+    <input type="date" id="date_of_checkin" name="date_of_checkin" class="form-control" value="<%= @relationship.date_of_checkin %>">
   </div>
 </div>
 
@@ -32,23 +44,15 @@
   </div>
 </div>
 
-<!-- Label and input for date_of_checkin -->
-<div class="form-group">
-  <label for="date_of_checkin" class="col-sm-2 control-label">
-    Last check-in
-  </label>
-  <div class="col-sm-10">
-    <input type="date" id="date_of_checkin" name="date_of_checkin" class="form-control" value="<%= @relationship.date_of_checkin %>">
-  </div>
-</div>
+<hr>
 
 <!-- Label and input for shared_activities_history -->
 <div class="form-group">
   <label for="shared_activities_history" class="col-sm-2 control-label">
-    Shared history
+    Shared History
   </label>
   <div class="col-sm-10">
-    <textarea id="shared_activities_history" name="shared_activities_history" placeholder="Shared history" class="form-control" rows="3"><%= @relationship.shared_activities_history %></textarea>
+    <textarea id="shared_activities_history" name="shared_activities_history" class="form-control" rows="3"><%= @relationship.shared_activities_history %></textarea>
   </div>
 </div>
 
@@ -58,7 +62,7 @@
     Education
   </label>
   <div class="col-sm-10">
-    <textarea id="education" name="education" placeholder="Education" class="form-control" rows="3"><%= @relationship.education %></textarea>
+    <textarea id="education" name="education" class="form-control" rows="3"><%= @relationship.education %></textarea>
   </div>
 </div>
 
@@ -68,7 +72,7 @@
     Interests
   </label>
   <div class="col-sm-10">
-    <textarea id="interests" name="interests" placeholder="Interests" class="form-control" rows="3"><%= @relationship.interests %></textarea>
+    <textarea id="interests" name="interests" class="form-control" rows="3"><%= @relationship.interests %></textarea>
   </div>
 </div>
 
@@ -78,7 +82,7 @@
     Professional
   </label>
   <div class="col-sm-10">
-    <textarea id="professional" name="professional" placeholder="Professional" class="form-control" rows="3"><%= @relationship.professional %></textarea>
+    <textarea id="professional" name="professional" class="form-control" rows="3"><%= @relationship.professional %></textarea>
   </div>
 </div>
 
@@ -88,29 +92,7 @@
     Family
   </label>
   <div class="col-sm-10">
-    <textarea id="family" name="family" placeholder="Family" class="form-control" rows="3"><%= @relationship.family %></textarea>
-  </div>
-</div>
-
-<!-- Label and input for first_met -->
-<div class="form-group">
-  <label for="first_met" class="col-sm-2 control-label">
-    First met
-  </label>
-  <div class="col-sm-10">
-    <textarea id="first_met" name="first_met" placeholder="First met" class="form-control" rows="3"><%= @relationship.first_met %></textarea>
-  </div>
-</div>
-
-<!-- Label and input for holiday_card -->
-<div class="form-group">
-  <div class="col-sm-offset-2 col-sm-10">
-    <div class="checkbox">
-      <label for="holiday_card">
-        <input type="checkbox" id="holiday_card" name="holiday_card" value="1" <%= "checked" if @relationship.holiday_card %>>
-        Holiday card
-      </label>
-    </div>
+    <textarea id="family" name="family" class="form-control" rows="3"><%= @relationship.family %></textarea>
   </div>
 </div>
 
@@ -124,19 +106,69 @@
   </div>
 </div>
 
+<hr>
+
 <!-- Label and input for email -->
 <div class="form-group">
   <label for="email" class="col-sm-2 control-label">
     Email
   </label>
   <div class="col-sm-10">
-    <input type="email" id="email" name="email" placeholder="Email" class="form-control" value="<%= @relationship.email %>">
+    <input type="email" id="email" name="email" class="form-control" value="<%= @relationship.email %>">
   </div>
 </div>
 
+<!-- Label and input for mobile number -->
+<div class="form-group">
+  <label for="mobile" class="col-sm-2 control-label">
+    Mobile
+  </label>
+  <div class="col-sm-10">
+    <input type="text" id="mobile" name="mobile" class="form-control" value="<%= @relationship.mobile %>">
+  </div>
+</div>
+
+<!-- Label and input for desk number -->
+<div class="form-group">
+  <label for="desk" class="col-sm-2 control-label">
+    Desk
+  </label>
+  <div class="col-sm-10">
+    <input type="text" id="desk" name="desk" class="form-control" value="<%= @relationship.desk %>">
+  </div>
+</div>
+
+<hr>
+
+<!-- Label and input for image -->
+<div class="form-group">
+  <label for="image" class="col-sm-2 control-label">
+  Image
+  </label>
+  <div class="col-sm-10">
+   <input type="file" id="image" name="image" class="form-control" value = "<%= @relationship.image %>" >
+ </div>
+</div>
+
+<hr>
+
+<!-- Label and input for holiday_card -->
 <div class="form-group">
   <div class="col-sm-offset-2 col-sm-10">
-  <button class="btn btn-success">
+    <div class="checkbox">
+      <label for="holiday_card">
+        <input type="checkbox" id="holiday_card" name="holiday_card" value="1" <%= "checked" if @relationship.holiday_card %>>
+        Holiday card
+      </label>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="form-group">
+  <div class="col-sm-offset-2 col-sm-10">
+    <button class="btn btn-success">
       Submit
     </button>
     or

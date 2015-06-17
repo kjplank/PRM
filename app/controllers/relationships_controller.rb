@@ -29,12 +29,15 @@ class RelationshipsController < ApplicationController
     @relationship.interests = params[:interests]
     @relationship.professional = params[:professional]
     @relationship.family = params[:family]
-    @relationship.first_met = params[:first_met]
     @relationship.birthday = params[:birthday]
     @relationship.email = params[:email]
+    @relationship.image = params[:image]
+    if @relationship.periodicity_of_communication.present?
+      @relationship.next_checkin = @relationship.date_of_checkin + @relationship.periodicity_of_communication.months
+    end
 
     if @relationship.save
-      redirect_to "/relationships", :notice => "Relationship created successfully."
+      redirect_to "/relationships", :notice => " Created profile for #{@relationship.first_name} #{@relationship.last_name}."
     else
       render 'new'
     end
@@ -58,12 +61,16 @@ class RelationshipsController < ApplicationController
     @relationship.interests = params[:interests]
     @relationship.professional = params[:professional]
     @relationship.family = params[:family]
-    @relationship.first_met = params[:first_met]
     @relationship.birthday = params[:birthday]
     @relationship.email = params[:email]
+    @relationship.image = params[:image]
+    if @relationship.periodicity_of_communication.present?
+      @relationship.next_checkin = @relationship.date_of_checkin + @relationship.periodicity_of_communication.months
+    end
+
 
     if @relationship.save
-      redirect_to "/relationships", :notice => "Relationship updated successfully."
+      redirect_to "/relationships/#{@relationship.id}", :notice => "Updated #{@relationship.first_name} #{@relationship.last_name}'s profile."
     else
       render 'edit'
     end
@@ -72,6 +79,9 @@ class RelationshipsController < ApplicationController
   def checkin
     @relationship = Relationship.find(params[:id])
     @relationship.date_of_checkin = Date.today
+    if @relationship.periodicity_of_communication.present?
+      @relationship.next_checkin = @relationship.date_of_checkin + @relationship.periodicity_of_communication.months
+    end
     @relationship.save
     redirect_to "/", :notice => "Checked-in with #{@relationship.first_name} #{@relationship.last_name}!"
   end
