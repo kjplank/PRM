@@ -31,6 +31,8 @@ class RelationshipsController < ApplicationController
     @relationship.family = params[:family]
     @relationship.birthday = params[:birthday]
     @relationship.email = params[:email]
+    @relationship.mobile = params[:mobile]
+    @relationship.desk = params[:desk]
     @relationship.image = params[:image]
     if @relationship.periodicity_of_communication.present?
       @relationship.next_checkin = @relationship.date_of_checkin + @relationship.periodicity_of_communication.months
@@ -63,6 +65,8 @@ class RelationshipsController < ApplicationController
     @relationship.family = params[:family]
     @relationship.birthday = params[:birthday]
     @relationship.email = params[:email]
+    @relationship.mobile = params[:mobile]
+    @relationship.desk = params[:desk]
     @relationship.image = params[:image]
     if @relationship.periodicity_of_communication.present?
       @relationship.next_checkin = @relationship.date_of_checkin + @relationship.periodicity_of_communication.months
@@ -82,6 +86,14 @@ class RelationshipsController < ApplicationController
     if @relationship.periodicity_of_communication.present?
       @relationship.next_checkin = @relationship.date_of_checkin + @relationship.periodicity_of_communication.months
     end
+
+    @note = Note.new
+    @note.content = "Checked in!"
+    @note.entry_made = Date.today
+    @note.relationship_id = @relationship.id
+    @note.user_id = current_user.id
+    @note.save
+
     @relationship.save
     redirect_to "/", :notice => "Checked-in with #{@relationship.first_name} #{@relationship.last_name}!"
   end

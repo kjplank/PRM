@@ -7,6 +7,7 @@ validates :user_id, :presence => true
 belongs_to :user
 has_many :trackers
 has_many :tags, through: :trackers
+has_many :notes
 
 mount_uploader :image, ImageUploader
 

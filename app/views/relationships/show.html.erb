@@ -118,6 +118,28 @@
             </div>
           </div>
         </div>
+
+        <ul class="list-group">
+          <% @relationship.notes.each do |note| %>
+          <li class="list-group-item">
+
+            <% if note.occurence.present? %>
+            <strong><%= note.occurence.to_formatted_s(:long_ordinal) %></strong> -
+            <a href="/relationships">Edit</a> | <a href="/relationships">Delete</a>
+            <% else %>
+            <strong><%= note.entry_made.to_formatted_s(:long_ordinal) %></strong> -
+            <a href="/notes/<%= note.id %>/edit">Edit</a> | <a href="/delete_note/<%= note.id %>">Delete</a>
+            <% end %>
+            <br>
+            <br>
+            <% if note.context.present? %>
+            <%= note.context %>:
+            <% end %>
+            <%= note.content %>
+            <br>
+          </li>
+          <% end %>
+        </ul>
       </div>
     </div>
   </div>
